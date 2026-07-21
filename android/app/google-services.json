@@ -1,0 +1,30 @@
+{
+  "_comment": "PLACEHOLDER — NOT A REAL FIREBASE CONFIG FILE. This file must be replaced with the real google-services.json downloaded from your Firebase Console (Project Settings > Your apps > Android app, package name com.cnglive.app) OR generated automatically by running `flutterfire configure`. The com.google.gms.google-services Gradle plugin (already wired in settings.gradle and app/build.gradle) will fail the build with a clear error if this placeholder is still in place when you build.",
+  "project_info": {
+    "project_number": "000000000000",
+    "project_id": "cng-live-placeholder",
+    "storage_bucket": "cng-live-placeholder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:000000000000:android:0000000000000000000000",
+        "android_client_info": {
+          "package_name": "com.cnglive.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "PLACEHOLDER_API_KEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
