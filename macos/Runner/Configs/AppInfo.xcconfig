@@ -1,0 +1,4 @@
+// Application-level settings for the Runner target.
+PRODUCT_NAME = cng_live
+PRODUCT_BUNDLE_IDENTIFIER = com.cnglive.app
+PRODUCT_COPYRIGHT = Copyright © 2026 com.cnglive.app. All rights reserved.
