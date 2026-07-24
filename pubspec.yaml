@@ -1,0 +1,110 @@
+name: cng_live
+description: "CNG LIVE — Community-powered live CNG pump status for Coimbatore drivers."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  provider: ^6.1.2
+
+  # Firebase
+  firebase_core: ^3.3.0
+  firebase_auth: ^5.1.4
+  cloud_firestore: ^5.2.1
+  firebase_messaging: ^15.0.4
+  firebase_storage: ^12.3.2
+
+  # Location & Maps
+  geolocator: ^13.0.1
+  geocoding: ^3.0.0
+  google_maps_flutter: ^2.9.0
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.4
+
+  # Notifications
+  flutter_local_notifications: ^17.2.2
+
+  # UI Polish
+  cached_network_image: ^3.4.0
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.10+1
+
+  # Utility
+  intl: ^0.19.0
+  connectivity_plus: ^6.0.5
+  uuid: ^4.4.2
+
+  # Required by already-approved code (models use Equatable; theme
+  # system uses google_fonts; app_logger.dart uses logger) — not all in
+  # the originally requested list, kept so the existing approved files
+  # still compile.
+  equatable: ^2.0.5
+  google_fonts: ^6.2.1
+  logger: ^2.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+  # App icon + native splash generation (dev-only tooling — does not
+  # ship in the built app).
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+
+# =============================================================================
+# APP ICON — flutter_launcher_icons
+# Run: dart run flutter_launcher_icons
+# =============================================================================
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 23
+  remove_alpha_ios: true
+
+  # Adaptive icon (Android 8+): a solid background plate + a padded,
+  # transparent-background foreground layer, so the logo is never
+  # cropped by a launcher's circle/squircle/rounded-square mask.
+  adaptive_icon_background: "#0F3D0F"
+  adaptive_icon_foreground: "assets/icons/app_icon_foreground.png"
+  adaptive_icon_monochrome: "assets/icons/app_icon_foreground.png"
+
+# =============================================================================
+# NATIVE SPLASH SCREEN — flutter_native_splash
+# Run: dart run flutter_native_splash:create
+# The native splash shows the logo on the brand background instantly at
+# cold start (before Dart/Flutter finishes initializing). It hands off
+# to lib/views/splash/splash_screen.dart, the custom animated Flutter
+# widget, which renders the text, dot-loader animation, and the timed
+# navigation to Home/Login.
+# =============================================================================
+flutter_native_splash:
+  color: "#0F3D0F"
+  image: assets/images/splash_logo.png
+
+  android_12:
+    color: "#0F3D0F"
+    image: assets/images/splash_logo.png
+    icon_background_color: "#0F3D0F"
+
+  android: true
+  ios: false
+  web: false

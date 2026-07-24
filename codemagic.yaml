@@ -1,0 +1,47 @@
+workflows:
+  android-release:
+    name: CNG LIVE — Android Build
+    max_build_duration: 60
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+      # google-services.json is already committed at android/app/, so
+      # no Firebase config script is needed here.
+
+    scripts:
+      - name: Install Flutter dependencies
+        script: |
+          flutter pub get
+
+      # Regenerates android/app/src/main/res/mipmap-*/ic_launcher*.png
+      # (+ mipmap-anydpi-v26/ic_launcher.xml, values/colors.xml) from
+      # assets/icons/app_icon.png + app_icon_foreground.png per the
+      # flutter_launcher_icons: block in pubspec.yaml. Must run before
+      # `flutter build`, since Gradle just packages whatever is already
+      # on disk under android/app/src/main/res.
+      - name: Generate app icons (flutter_launcher_icons)
+        script: |
+          dart run flutter_launcher_icons
+
+      # Regenerates the native splash (drawable/launch_background.xml,
+      # values*/styles.xml, android12 splash resources) from the
+      # flutter_native_splash: block in pubspec.yaml.
+      - name: Generate native splash screen (flutter_native_splash)
+        script: |
+          dart run flutter_native_splash:create
+
+      - name: Build Android APK
+        script: |
+          flutter build apk --release
+
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
+      - build/app/outputs/**/mapping.txt
+      - flutter_drive.log
+
+    publishing:
+      email:
+        recipients: []
+        notify:
+          success: false
+          failure: true

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "637750456503",
+    "project_id": "cng-live-a9b7e",
+    "storage_bucket": "cng-live-a9b7e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637750456503:android:d0f033dbd62250e3325d32",
+        "android_client_info": {
+          "package_name": "com.cnglive.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrScuNpwcJ8dnHtZLINebNlp2srxhUfdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

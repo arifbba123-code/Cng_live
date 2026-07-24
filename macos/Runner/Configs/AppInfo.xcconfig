@@ -1,0 +1,3 @@
+PRODUCT_NAME = cng_live
+PRODUCT_BUNDLE_IDENTIFIER = com.cnglive.app
+PRODUCT_COPYRIGHT = Copyright © 2026 CNG LIVE. All rights reserved.

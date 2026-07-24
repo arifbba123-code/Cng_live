@@ -1,0 +1,91 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
+}
+
+// NOTE: with Gradle 8.14's stricter parser, only buildscript {},
+// pluginManagement {}, and other plugins {} blocks are allowed BEFORE
+// the plugins {} block above — so all other statements (including this
+// local.properties loading, previously placed above plugins {}) must
+// come after it. This was a real build failure fixed here.
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
+if (flutterVersionCode == null) {
+    flutterVersionCode = "1"
+}
+
+def flutterVersionName = localProperties.getProperty("flutter.versionName")
+if (flutterVersionName == null) {
+    flutterVersionName = "1.0.0"
+}
+
+android {
+    namespace = "com.cnglive.app"
+    // Bumped from 34 -> 36: flutter_plugin_android_lifecycle,
+    // geolocator_android, google_maps_flutter_android, jni, jni_flutter,
+    // and sqflite_android all require compiling against SDK 36+
+    // (real build failure otherwise — AAR metadata check).
+    compileSdk = 36
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        // Required by flutter_local_notifications (AAR metadata check:
+        // "requires core library desugaring to be enabled").
+        coreLibraryDesugaringEnabled = true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+    }
+
+    defaultConfig {
+        // CNG LIVE — Android application id. Change before Play Store
+        // submission if you register a different package name in
+        // your Firebase / Play Console project.
+        applicationId = "com.cnglive.app"
+        // Firebase Auth (phone OTP) and recent Firebase BoM releases
+        // require minSdk 23+.
+        minSdk = 23
+        targetSdk = 36
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
+        multiDexEnabled = true
+    }
+
+    buildTypes {
+        release {
+            // Signing: Add your own signing config before Play Store
+            // release (Step 7 roadmap, Phase 7). Debug signing is used
+            // here only so `flutter run --release` works out of the box.
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation "com.google.android.gms:play-services-base:18.5.0"
+    implementation("androidx.multidex:multidex:2.0.1")
+    implementation platform("com.google.firebase:firebase-bom:33.1.2")
+    // Required by flutter_local_notifications for Java 8+ API
+    // desugaring support on minSdk < 26 devices.
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+}

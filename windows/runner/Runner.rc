@@ -1,0 +1,34 @@
+#include <winres.h>
+
+#define VERSION_AS_NUMBER 1,0,0,0
+#define VERSION_AS_STRING "1.0.0"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION VERSION_AS_NUMBER
+ PRODUCTVERSION VERSION_AS_NUMBER
+ FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+ FILEFLAGS 0
+ FILEOS VOS__WINDOWS32
+ FILETYPE VFT_APP
+ FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904e4"
+    BEGIN
+      VALUE "CompanyName", "CNG LIVE" "\0"
+      VALUE "FileDescription", "CNG LIVE" "\0"
+      VALUE "FileVersion", VERSION_AS_STRING "\0"
+      VALUE "InternalName", "cng_live" "\0"
+      VALUE "OriginalFilename", "cng_live.exe" "\0"
+      VALUE "ProductName", "CNG LIVE" "\0"
+      VALUE "ProductVersion", VERSION_AS_STRING "\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1252
+  END
+END
+
+IDI_APP_ICON ICON "resources\\app_icon.ico"
